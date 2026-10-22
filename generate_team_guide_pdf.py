@@ -266,8 +266,9 @@ def create_team_guide_pdf(output_path):
         ('LEFTPADDING', (0,0), (-1,-1), 8),
         ('RIGHTPADDING', (0,0), (-1,-1), 8),
     ]))
-    story.append(meta_table)
-    story.append(Spacer(1, 14    # ------------------------------------------------------------------
+    story.append(Spacer(1, 14))
+
+    # ------------------------------------------------------------------
     # SECTION 1: EXECUTIVE OVERVIEW & UHV PHILOSOPHY
     # ------------------------------------------------------------------
     story.append(Paragraph("1. Executive Overview &amp; UHV Philosophy", h1_style))
@@ -511,7 +512,7 @@ def create_team_guide_pdf(output_path):
         "Each question includes a <b>Quick Pitch (15-second oral answer)</b> followed by the <b>Technical / Ethical Rationale</b>.",
         body_style
     ))
-    story.append(Spacer(1, 4))pend(Spacer(1, 6))
+    story.append(Spacer(1, 4))
 
     qa_list = [
         # Category A: Architecture & Stack
@@ -625,11 +626,10 @@ def create_team_guide_pdf(output_path):
             Paragraph(f"<b>{q}</b>", question_style),
             Paragraph(f"🗣️ <b>Quick Pitch:</b> {pitch}", answer_pitch),
             Paragraph(f"🔍 <b>Detailed Rationale:</b> {full}", body_style),
-            Spacer(1, 4)
+            Spacer(1, 2.5)
         ]
         story.append(KeepTogether(qa_flowables))
 
-    story.append(Spacer(1, 10))
 
     # ------------------------------------------------------------------
     # SECTION 8: QUICK RUN REFERENCE & CREDENTIALS CHEAT SHEET

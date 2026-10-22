@@ -75,8 +75,17 @@ export default function StaffDashboard() {
   const performLogin = async (username, password) => {
     setLoginError(null);
     setIsLoggingIn(true);
+    const cleanUser = username ? username.trim() : '';
+    const cleanPass = password ? password.trim() : '';
+
+    if (!cleanUser || !cleanPass) {
+      setLoginError('Please enter both Staff ID and Password.');
+      setIsLoggingIn(false);
+      return;
+    }
+
     try {
-      const res = await api.login(username.trim(), password);
+      const res = await api.login(cleanUser, cleanPass);
       setCurrentUser({ username: res.username, role: res.role });
       setLoginPassword('');
     } catch (err) {
@@ -94,6 +103,7 @@ export default function StaffDashboard() {
 
   // Handle 1-Click Fast Demo Login
   const handleFastLogin = async (staffId, password) => {
+    setLoginError(null);
     setLoginUsername(staffId);
     setLoginPassword(password);
     await performLogin(staffId, password);
@@ -325,7 +335,10 @@ export default function StaffDashboard() {
                 className="form-input"
                 placeholder="e.g. STAFF-101 or ADMIN-01"
                 value={loginUsername}
-                onChange={(e) => setLoginUsername(e.target.value)}
+                onChange={(e) => {
+                  setLoginUsername(e.target.value);
+                  if (loginError) setLoginError(null);
+                }}
                 required
               />
             </div>
@@ -341,7 +354,10 @@ export default function StaffDashboard() {
                   className="form-input"
                   placeholder="Enter password"
                   value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
+                  onChange={(e) => {
+                    setLoginPassword(e.target.value);
+                    if (loginError) setLoginError(null);
+                  }}
                   required
                   style={{ paddingRight: '2.5rem' }}
                 />
