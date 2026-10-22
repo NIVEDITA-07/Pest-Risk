@@ -1,0 +1,446 @@
+=== ABSTRACT (53-59) ===
+[53] Abstract
+
+[54] In today's connected digital era, elderly seniors living independently face heightened vulnerabilities from sudden medical incapacitation, unobserved falls, or acute distress. In these life-threatening situations, seniors are physically incapable of answering incoming telephone calls or dialing emergency services. Although family members, caregivers, and medical practitioners make repeated urgent calls, conventional mobile telephony platforms treat these high-stakes calls identically to marketing spam or routine chatter, offering zero ambient intelligence or automated distress escalation. Conversely, black-box Machine Learning (ML) and Large Language Model (LLM) approaches suffer from severe drawbacks in safety-critical eldercare, including non-deterministic hallucinations, inference latency, battery drain, lack of legal auditability, and invasive eavesdropping that violates HIPAA and GDPR privacy.
+
+[55] To resolve this challenge, this project proposes SafeCall AI: Connected Elderly-Care Telephony & Urgency Platform, an intelligent, dual-tier connected healthcare and ambient assisted living (AAL) system engineered specifically for elderly individuals living independently. Built strictly with deterministic Java and Android OS native facilities, SafeCall AI intercepts telephony telemetry in real time, computes contextual call urgency scores (0–100), detects severe non-response anomalies, and dispatches multi-channel caregiver alerts—with zero cloud dependency for AI inference, zero ML hallucinations, and zero audio eavesdropping.
+
+[56] The system operates through an asynchronous telephony interception Finite State Machine (FSM) utilizing Android OS native facilities. Incoming calls are evaluated through two complementary, deterministic Java engines: a 4-Factor Weighted Rule Engine that computes instantaneous call urgency (0–100) across caller priority, call burst frequency, late-night timing, and historical answer rates; and a 5-Component Non-Response Policy Engine that monitors sequential unanswered bursts across rolling windows. To eliminate false alarms and caregiver alert fatigue, SafeCall AI enforces a strict 3-Gate Anomaly Pipeline comprising a frequency threshold (≥4 missed calls), a 60-second grace cancellation period, and a configurable severity check.
+
+[57] SafeCall AI incorporates dual-tier emergency dispatch, combining real-time cloud push alerts via Firebase Cloud Messaging (FCM) through a companion Node.js backend with direct, offline carrier-grade cellular SMS to primary and nearby family members. An embedded SQLite transactional queue ensures zero data loss during network dead zones, automatically synchronizing queued alerts upon reconnection. Companion interfaces—including an embedded React 18 healthcare UI on the senior's handset and a dedicated React 18 Caregiver Web Dashboard with live urgency visualizers, benchmark scenario testing, and telemetry gauges—provide seamless real-time monitoring and parameter testing.
+
+[58] Overall, SafeCall AI serves as a transparent, auditable, and life-saving digital guardian, bridging mobile systems engineering, deterministic algorithmic intelligence, modern React component design, and ambient assisted living to safeguard elderly independence and provide peace of mind to families.
+
+=== CHAPTER 1 (82-114) ===
+[82] CHAPTER 1
+
+[83] INTRODUCTION
+
+[84] 1.1  GENERAL
+
+[85] In the modern era of rapid technological advancement and changing social demographics, the global population is experiencing a profound transition toward aging societies. A significant proportion of senior citizens now live independently in their own homes, valuing autonomy and familiar environments. However, this independent lifestyle introduces grave personal safety vulnerabilities. Seniors frequently experience unobserved slip-and-fall accidents, sudden cardiovascular incidents, strokes, or acute diabetic episodes that render them physically incapacitated and unable to move, answer incoming calls, or reach for help.
+
+[86] When such traumatic events occur, concerned family members, caregivers, and medical practitioners invariably attempt repeated phone calls. On conventional mobile devices, however, standard telephony subsystems treat these life-or-death redials identically to routine telemarketing spam or casual missed calls. Standard operating systems provide zero automated escalation, zero contextual analysis, and zero emergency outreach when multiple critical incoming calls go unanswered.
+
+[87] While modern software solutions have attempted to apply Machine Learning (ML) and Large Language Models (LLMs) to call evaluation, these black-box paradigms present unacceptable hazards in safety-critical eldercare. Machine learning models suffer from non-deterministic hallucinations under edge conditions, introduce high inference latency, drain scarce handset battery reserves, and require continuous cloud connectivity. More critically, audio-based AI eavesdropping violates stringent healthcare privacy regulations such as HIPAA and GDPR, while offering no legally verifiable or mathematically auditable justification for emergency dispatches.
+
+[88] To resolve this fundamental dilemma, the SafeCall AI project was conceived as an intelligent, dual-tier connected healthcare and ambient assisted living (AAL) system. Operating strictly through deterministic Java algorithms, native Android telephony telemetry, modern React 18 user interfaces, and a dedicated Node.js cloud caregiver backend, SafeCall AI evaluates incoming call metadata in real time, computes urgency scores (0–100), detects severe non-response anomalies, and dispatches multi-channel caregiver alerts—with zero cloud dependency for inference, zero ML hallucinations, and zero audio eavesdropping.
+
+[89] 1.2  OBJECT-ORIENTED PROGRAMMING (OOP)
+
+[90] Object-Oriented Programming (OOP) is a foundational software engineering paradigm that structures complex software systems around discrete objects—instances of classes that encapsulate state, behavior, and relationships. Unlike procedural programming, which organizes logic as sequential subroutine instructions, OOP models real-world operational domains and their collaborative interactions, directly promoting reusability, testability, and enterprise maintainability.
+
+[91] The four foundational pillars of OOP form the architectural backbone of SafeCall AI:
+
+[92] •  Encapsulation: Bundling of critical telemetry attributes (timestamps, contact priorities, historical answer rates) within immutable or controlled data models (e.g., CallContext, CallerProfile, CallRecord, PendingSequence), shielding internal states from arbitrary external corruption.
+
+[93] •  Inheritance: Deriving specialized components from extensible framework abstractions, such as DatabaseHelper extending Android's SQLiteOpenHelper, and SafeCallPhoneStateReceiver extending BroadcastReceiver, promoting code reuse and modular system behavior.
+
+[94] •  Abstraction: Concealing internal algorithmic complexity behind clean, well-defined service interfaces (e.g., WeightedRuleEngine.evaluateCall(), FamilyAlertManager.dispatchAlert()), enabling client activities and web dashboards to execute domain logic without coupling to internal rule evaluation mechanics.
+
+[95] •  Polymorphism: Enabling interchangeable treatment of polymorphic call outcomes (ANSWERED, MISSED, DECLINED, OUTGOING_CALLBACK) and multi-channel alert delivery adapters (Cloud HTTP FCM push versus direct cellular SMS), allowing runtime substitution based on connectivity states.
+
+[96] In SafeCall AI, these OOP principles are systematically enforced across both handset-side Android services and the component-oriented React frontend architecture, creating a fully decoupled, enterprise-grade system capable of rapid extension and rigorous verification.
+
+[97] 1.2.1  Nomenclature
+
+[98] Table: 1.2.1 Nomenclature
+
+[99] 1.3  PROJECT OVERVIEW
+
+[100] SafeCall AI is an end-to-end, multi-tier software ecosystem that unites on-device native Android Java intelligence with a modern React 18 user interface and a cloud-connected caregiver dashboard. The project bridges the divide between passive mobile operating systems and intelligent healthcare monitoring by transforming raw telephony events into actionable clinical indicators without violating patient privacy.
+
+[101] At the foundation of the handset tier is the SafeCallPhoneStateReceiver, which implements an explicit Finite State Machine (FSM) to track call lifecycle transitions (IDLE → RINGING → OFFHOOK → IDLE) with zero UI thread contention. Intercepted events are immediately offloaded to a background thread pool (CallEventProcessor.EXECUTOR), ensuring that telephony operations complete in under 5 milliseconds and eliminating Application Not Responding (ANR) risks.
+
+[102] The project incorporates two complementary mathematical evaluation engines:
+
+[103] •  The 4-Factor Weighted Rule Engine (WeightedRuleEngine): Evaluates incoming calls instantaneously across four additive gates: Caller Identity Priority (0–25 pts), Call Frequency within a 15-minute rolling window (0–35 pts), Timing Context such as late-night hours (0–10 pts), and Historical Anomaly Deviation (0–30 pts). The total score is strictly bounded to [0, 100], classifying calls into LOW, MEDIUM, or HIGH urgency.
+
+[104] •  The 5-Component Non-Response Policy Engine (NonResponsePolicyEngine): Monitors multi-call unanswered sequences over rolling time horizons. It aggregates Missed-Call Accumulation (0–40 pts), Routine Deviation against learned diurnal baselines (0–25 pts), Persistence of Non-Response across elapsed time (0–15 pts), Multiple Distinct Callers attempting contact (0–10 pts), and Historical Response Deviation (0–10 pts).
+
+[105] To prevent caregiver panic and alert fatigue, SafeCall AI routes all anomalous events through a rigorous 3-Gate Anomaly Pipeline: Gate 1 requires an accumulation of ≥4 consecutive missed calls within 15 minutes; Gate 2 enforces a 60-second grace cancellation timer that automatically aborts if the senior answers a call, dials out, or touches the mobile handset; and Gate 3 validates that the urgency score meets the caregiver-configured threshold (60, 70, or 80 points) within active monitoring schedules.
+
+[106] For interactive presentation and caregiver supervision, SafeCall AI provides two complementary React 18 interfaces: an on-device React 18 single-page application embedded in Android WebView via SafeCallNativeBridge, and a standalone Caregiver Web Dashboard (safecall-dashboard) running on Node.js. The caregiver dashboard provides an interactive visualizer of the 4-factor engine, featuring 10 clinical benchmark scenarios, live urgency gauges, audible siren testing, and real-time alert event logging.
+
+[107] 1.4  LITERATURE SURVEY
+
+[108] A comprehensive review of contemporary academic literature in Ambient Assisted Living (AAL), elderly emergency detection, and smart healthcare monitoring was conducted to benchmark existing paradigms and identify systemic architectural limitations. The surveyed research works are summarized in Table 1.4.
+
+[109] Table: 1.4 Literature survey summary
+
+[110] Critical Synthesis & The Research Gap
+
+[111] A rigorous comparative analysis of the surveyed literature reveals a fundamental blind spot across modern elderly care research: existing frameworks rely almost exclusively on ambient smart-home environmental sensors (PIR motion detectors, door contact switches) or wearable bio-accelerometers. While these modalities can detect physical stillness or sudden drops, they are completely oblivious to telephony interactions. When an acute incapacitating event occurs, seniors are physically incapable of reaching emergency buttons or answering calls. Concerned family members, doctors, and emergency caregivers invariably attempt repeated, high-frequency telephone calls. None of the existing systems evaluate these incoming communication patterns as high-confidence indicators of life-threatening distress.
+
+[112] SafeCall AI directly addresses this critical research gap by proposing a context-aware approach for estimating the urgency of incoming communication. The system combines caller identity, call frequency, timing context, and historical response behaviour through a deterministic, mathematical weighted rule-based engine producing an urgency score from 0–100. The approach is lightweight, transparent, legally explainable, and ideally suited for native Android Java implementation. By bridging the divide between telephony telemetry and elderly monitoring, SafeCall AI enables relatives and caregivers to respond promptly and appropriately to abnormal communication patterns without invading user audio privacy.
+
+=== CHAPTER 2 (114-137) ===
+[114] CHAPTER 2
+
+[115] SCOPE AND DELIVERABLES
+
+[116] 2.1  SCOPE OF THE PROJECT
+
+[117] The SafeCall AI project was undertaken to design, develop, and validate an ambient assisted living telephony security platform utilizing deterministic object-oriented software engineering principles. The scope encompasses the complete engineering lifecycle—from clinical requirement formulation, mathematical urgency modeling, and Android native telephony interception to React 18 web dashboard visualizers, offline resilience engineering, and extensive test validation.
+
+[118] The defined scope encompasses seven core architectural domains:
+
+[119] 1. Core Domain Engine Development (Java 17): Designing decoupled, pure-Java scoring algorithms (WeightedRuleEngine, NonResponsePolicyEngine, RoutineAnalyzer, SequenceTracker) that operate without Android runtime dependencies, enabling instant CLI compilation and unit testing.
+
+[120] 2. Android Handset Telephony Layer (API 34): Implementing asynchronous BroadcastReceivers and background thread pools to intercept incoming telephony transitions, compute call durations, synchronize with system dialer providers, and manage runtime permissions.
+
+[121] 3. On-Device SQLite Persistence Layer: Developing DatabaseHelper (schema version 4) to manage relational tables for contacts, call history evaluations, stateful anomaly sequences, and resilient offline alert queues.
+
+[122] 4. Hybrid Mobile Presentation Layer: Embedding a responsive React 18 single-page application inside an Android WebView, connected via a bidirectional @JavascriptInterface native bridge (SafeCallNativeBridge) with accessible healthcare design tokens.
+
+[123] 5. Companion Caregiver Web Dashboard & Visualizer Tier (React 18 & Node.js): Developing a responsive web dashboard using React 18 and Node.js to allow caregivers and evaluators to interactively simulate call bursts, explore 10 clinical benchmark scenarios, test threshold triggers, and monitor live telemetry in real time.
+
+[124] 6. Multi-Channel Emergency Dispatch System: Creating FamilyAlertManager to coordinate dual-tier notifications via cloud push (Node.js + Firebase Cloud Messaging) and direct carrier SMS (SmsManager), incorporating duplicate suppression cooldowns and offline network draining.
+
+[125] 7. Security, Privacy, and Pairing Protocols: Establishing an ephemeral 6-character cryptographic device pairing handshake with a 300-second TTL to securely link seniors and caregivers with zero audio eavesdropping or data leakage.
+
+[126] 2.2  PROJECT DELIVERABLES
+
+[127] The project deliverables represent the tangible software products, source code modules, configuration assets, and technical documentation generated during development:
+
+[128] 1. Handset Android Application Package (APK): Production-ready Android application package (app-debug.apk) targeting Android 14 (API 34) with backward compatibility to API 26 (Android 8.0), featuring runtime telephony permissions, background state machines, and WebView host activities.
+
+[129] 2. Pure-Java Urgency Evaluation Engines: Standalone, deterministic Java class modules (WeightedRuleEngine.java, NonResponsePolicyEngine.java, RoutineAnalyzer.java, SequenceTracker.java) providing mathematically bounded urgency scoring (0–100) and multi-missed sequence tracking.
+
+[130] 3. Embedded SQLite Schema & Persistence Layer: Comprehensive SQLiteOpenHelper database management layer managing four relational tables (contacts, call_history, pending_alerts, offline_alerts) with robust transaction management.
+
+[131] 4. Companion Caregiver Web Dashboard & Visualizer (safecall-dashboard): A fully functional React 18 web application running on Node.js (port 3000), providing real-time urgency gauges, benchmark testing suites (10 clinical cases), and audio alert notifications.
+
+[132] 5. Embedded React 18 Healthcare Mobile UI: Offline-capable React 18 single-page application bundled within assets/www, featuring real-time overview gauges, interactive call logs, contact priority editors, and simulated call triggers.
+
+[133] 6. Multi-Channel Alert & Cloud Backend Engine: Node.js cloud server (safecall-backend) implementing Firebase Cloud Messaging (FCM HTTP v1) dispatch, 6-character ephemeral pairing protocol, and direct carrier SMS fallback via FamilyAlertManager.
+
+[134] 7. Automated Test Suites & Validation Framework: Pure Java CLI unit test suite (WeightedRuleEngineTest.java) validating 11 critical edge cases without emulator overhead, along with end-to-end cloud flow testing scripts.
+
+[135] 8. Comprehensive Technical Documentation: Extensive technical documentation including README.md architectural guides, database schema definitions, Gradle build scripts, and ReportLab PDF compilation utilities.
+
+=== CHAPTER 3 (137-169) ===
+[137] CHAPTER 3
+
+[138] METHODOLOGY
+
+[139] 3.1  OVERVIEW
+
+[140] The methodology adopted for SafeCall AI followed a structured, iterative software engineering framework emphasizing Object-Oriented Design (OOD), Agile principles, and modular multi-tier development. The primary objective was to deliver a mathematically deterministic, fail-safe eldercare monitoring platform that isolates core evaluation algorithms from operating system dependencies, enabling rapid verification and effortless portability.
+
+[141] The development lifecycle was structured into five interconnected stages:
+
+[142] •  1. Requirement Analysis & Clinical Telemetry Modeling: Formulating non-response emergency criteria based on eldercare medical literature, establishing the 4-factor urgency formula, and defining the 3-gate false-alarm reduction pipeline.
+
+[143] •  2. Core Domain Engine Architecture: Implementing pure-Java rule engines, stateful burst trackers, and personalized baseline learners completely free of Android framework dependencies.
+
+[144] •  3. Handset Telephony Interception & Persistence: Developing Android BroadcastReceivers, SQLite relational schemas, background thread pools, and the hybrid React WebView bridge.
+
+[145] •  4. Caregiver Web Dashboard & Cloud Integration: Constructing the React 18 caregiver visualizer dashboard and Node.js Firebase Cloud Messaging push relays for caregiver monitoring.
+
+[146] •  5. Quality Assurance, Boundary Testing & Verification: Executing pure-Java CLI regression test suites across 11 edge cases, evaluating dialer commit latency, and validating carrier SMS fallbacks.
+
+[147] 3.2  DEVELOPMENT APPROACH
+
+[148] An Iterative Agile Development Model was employed throughout the project lifecycle. This paradigm enabled continuous feedback loops, frequent code refactoring, and early validation of safety-critical logic. Core mathematical rule engines were authored and verified first via command-line Java unit tests before being integrated with the complex Android telephony runtime.
+
+[149] 1. Decoupled Core Logic Formulation: Authoring domain models (CallContext, CallerProfile) and scoring rules in standard Java without Android SDK imports, ensuring 100% deterministic reproducibility.
+
+[150] 2. Architectural Layering & Data Access: Implementing the repository pattern (CallRepository, PendingAlertRepository) atop Android SQLite to decouple database operations from telephony receivers.
+
+[151] 3. Asynchronous Event Pipeline: Implementing goAsync() and Handler loops to synchronize with native Android dialer commits without blocking the system UI thread.
+
+[152] 4. React Visualizer Verification: Building the React 18 dashboard to simulate and test edge scenarios (e.g., late-night emergency bursts, outsider call barrages) with live graphical gauges.
+
+[153] 5. Multi-Device End-to-End Testing: Validating dual-tier alert dispatches under airplane mode, low battery, and network reconnection scenarios.
+
+[154] 3.3  TOOLS AND FRAMEWORKS USED
+
+[155] The selection of development tools and frameworks was guided by the need for deterministic mathematical computation, low runtime latency, strict data privacy, modern reactive user interfaces, and robust cloud push notifications.
+
+[156] Table: 3.3 Tools and frameworks used
+
+[157] 3.4  SOFTWARE DEVELOPMENT PRINCIPLES APPLIED
+
+[158] 1. Encapsulation:
+State encapsulation is strictly enforced in models such as CallContext, CallerProfile, CallRecord, and PendingSequence. All internal fields are protected and accessed via immutable getters or controlled mutators. Database access is strictly encapsulated within CallRepository and PendingAlertRepository, preventing telephony receivers from executing raw SQL queries.
+
+[159] 2. Inheritance:
+Extensible base classes reduce redundancy across the system. DatabaseHelper inherits lifecycle management and version migrations from SQLiteOpenHelper. SafeCallPhoneStateReceiver extends BroadcastReceiver. In the presentation tier, React's component hierarchy provides reusable visual abstractions.
+
+[160] 3. Abstraction:
+High-level abstractions decouple business rules from infrastructure. The WeightedRuleEngine exposes a single public abstraction evaluateCall(CallContext context), hiding its 4 internal mathematical scoring gates. Similarly, FamilyAlertManager provides dispatchAlert(PendingSequence seq), abstracting the dual-tier routing between cellular SMS and cloud HTTP endpoints.
+
+[161] 4. Polymorphism:
+Polymorphism is demonstrated in the handling of call outcomes through the CallOutcome enumeration (ANSWERED, MISSED, DECLINED, OUTGOING_CALLBACK), where each outcome triggers distinct state transitions within CallEventProcessor and SequenceTracker. Furthermore, alert payloads serialize polymorphically for cloud FCM JSON versus cellular SMS string payloads.
+
+[162] 3.5  QUALITY ASSURANCE AND VERSION CONTROL
+
+[163] To ensure uncompromising reliability in an emergency-oriented healthcare platform, SafeCall AI implemented rigorous quality assurance and source-control standards:
+
+[164] •  Git Version Control & Branch Hygiene: Code was maintained in a structured repository with descriptive commits, feature branches, and tag-based releases matching major architectural milestones.
+
+[165] •  Pure-Java Unit Test Suite: An automated test suite (WeightedRuleEngineTest.java) executes 11 comprehensive unit scenarios directly from the command line, verifying score boundary clamping [0, 100], late-night escalation, repeated call step progressions, and duplicate suppression.
+
+[166] •  ANR and Memory Leak Auditing: All telephony intercept handlers utilize goAsync() and thread-pool executors, ensuring zero main thread blocking. Receiver operations were audited to guarantee complete execution in under 5 milliseconds.
+
+[167] •  Physical Device Telephony Validation: Real-world tests were conducted using physical dual-SIM Android devices, verifying call interception, dialer commit synchronization (1,200 ms delay), SMS delivery receipts, and offline alert queue restoration.
+
+=== CHAPTER 4 (169-226) ===
+[169] CHAPTER 4
+
+[170] PROJECT ACTIVITIES
+
+[171] 4.1  OVERVIEW
+
+[172] The SafeCall AI development roadmap was executed through structured, synchronized engineering tracks: domain algorithm formulation, handset-level Android telephony interception, on-device SQLite persistence, React 18 frontend & caregiver visualizer dashboard development, multi-channel alert dispatch, and end-to-end integration testing. Each activity applied strict software engineering best practices to guarantee modularity and deterministic execution. The following sections provide a comprehensive technical account of all activities, technologies, and challenges.
+
+[173] 4.2  BACKEND DEVELOPMENT ACTIVITIES
+
+[174] The backend domain layer encapsulates the core analytical intelligence of SafeCall AI. Developed in deterministic Java 17, it executes instantaneous urgency scoring, rolling-window burst analysis, and personalized baseline learning.
+
+[175] 4.2.1  Tasks Performed
+
+[176] •  Multi-Layered Architecture: Designed a strict multi-layered pattern: Models (data containers), DAOs (data access objects), Engines (business evaluation), and Handlers (dispatch coordination).
+
+[177] •  WeightedRuleEngine Implementation: Implemented the 4-factor additive mathematical engine calculating urgency across Caller Identity (0–25 pts), Frequency (0–35 pts), Timing (0–10 pts), and Anomaly (0–30 pts), bounded to [0, 100].
+
+[178] •  NonResponsePolicyEngine Implementation: Constructed the 5-component non-response anomaly scorer evaluating missed-call accumulation, routine deviation, persistence, multiple distinct callers, and historical run deviations.
+
+[179] •  RoutineAnalyzer Implementation: Built an adaptive learner bucketing calling history into 24 one-hour intervals, enforcing a 10-observation minimum before computing baseline answer rates, while sanitizing simulation test calls.
+
+[180] •  SequenceTracker Implementation: Engineered stateful burst tracking across 15-minute rolling windows, initiating and managing the 60-second grace cancellation timer.
+
+[181] •  DatabaseHelper & Schema Definition: Created DatabaseHelper (schema version 4) managing SQLite tables for contacts, call history, pending alerts, and offline queues.
+
+[182] 4.2.2  Tools and Technologies Used
+
+[183] Table: 4.2.2 Tools and technologies used
+
+[184] 4.2.3  Challenges Faced
+
+[185] •  Eliminating ANR Risks Under Rapid Ringing: Android system BroadcastReceivers enforce a strict 10-second timeout. Intercepting calls synchronously caused UI stutter. This was resolved by delegating processing immediately to a dedicated ExecutorService thread pool.
+
+[186] •  Dialer Commit Latency Race Condition: Android stock dialers write call records to CallLog.Calls asynchronously after termination. Querying immediately caused missed outcome detection. Resolved by implementing an asynchronous Handler delay of 1,200 ms before database inspection.
+
+[187] •  Baseline Contamination by Caregiver Simulations: Caregiver testing with simulated calls artificially distorted the senior's routine answer rate. Resolved by introducing an explicit isSimulation flag in the database schema, strictly ignored by RoutineAnalyzer.
+
+[188] 4.3  FRONTEND DEVELOPMENT ACTIVITIES
+
+[189] Frontend activities focused on delivering an accessible, senior-tailored user experience on the mobile handset, coupled with an interactive companion React 18 web simulation dashboard for caregivers and evaluators.
+
+[190] 4.3.1  Tasks Performed
+
+[191] •  Native Android Host Activity: Developed MainActivity.java to host the Android WebView, initialize database repositories, and dynamically register telephony receivers.
+
+[192] •  Native Contact & History Views: Created ContactManagementActivity and CallHistoryActivity allowing native Android list management of trusted contacts and urgency evaluations.
+
+[193] •  Bidirectional JavaScript Bridge: Implemented SafeCallNativeBridge.java using @JavascriptInterface annotations, providing safe JSON serialization between native SQLite and web UI components.
+
+[194] •  React 18 Healthcare Mobile UI: Bundled an offline React 18 single-page application into assets/www featuring real-time overview gauges, call logs, contact management, and live simulator controls.
+
+[195] •  Caregiver Web Dashboard & Visualizer: Constructed safecall-dashboard using React 18 (app.jsx), implementing live mathematical urgency gauge rendering, 10 clinical benchmark scenarios, siren sound tests, and real-time alert event logging.
+
+[196] 4.3.2  Tools and Technologies Used
+
+[197] Table: 4.3.2 Tools and technologies used
+
+[198] 4.3.3  Challenges Faced
+
+[199] •  Elderly Accessibility Considerations: Standard mobile UIs feature tiny fonts and low contrast. Designed soft-teal high-contrast color tokens and large touch targets (≥48 dp) tailored for senior vision.
+
+[200] •  WebView Thread-Safety Cross-Talk: Invoking JavaScript from native background threads caused UI exceptions. Enforced runOnUiThread() dispatches for all bridge evaluations.
+
+[201] •  Multi-Device Screen Responsiveness: Ensured responsive Flexbox styling adaptable across compact senior smartphones, modern handsets, and desktop tablet browsers.
+
+[202] 4.4  SYSTEM INTEGRATION AND TESTING
+
+[203] System integration unified telephony interception, domain urgency engines, SQLite persistence, and dual-channel alert dispatch into a resilient, automated safety pipeline.
+
+[204] 4.4.1  Tasks Performed
+
+[205] •  3-Gate Anomaly Pipeline Verification: Integrated Gate 1 (frequency accumulation ≥4 calls), Gate 2 (60-second grace timer), and Gate 3 (severity threshold check).
+
+[206] •  Dual-Tier Alert Dispatching: Wired FamilyAlertManager to trigger cloud HTTP POST alerts (/api/alerts/trigger) on the Node.js backend and carrier-grade cellular SMS via SmsManager simultaneously.
+
+[207] •  Resilient Offline Queuing: Validated offline enqueuing in offline_alerts table during airplane mode, verifying automatic synchronization via drainOfflineAlerts() upon network reconnection.
+
+[208] •  Duplicate Alert Suppression: Implemented a 30-second cooldown filter suppressing repetitive duplicate dispatches during rapid consecutive redials.
+
+[209] •  Device Pairing Protocol: Validated the 6-character ephemeral pairing protocol with 300-second TTL linking seniors and caregivers.
+
+[210] 4.4.2  Tools and Technologies Used
+
+[211] Table: 4.4.2 Tools and technologies used
+
+[212] 4.4.3  Challenges Faced
+
+[213] •  Carrier Dead Zones and Data Outages: Elderly residences often experience poor data coverage. Solved by decoupling cloud push from cellular SMS and queueing unsent payloads in SQLite.
+
+[214] •  Android Doze Mode Battery Optimizations: Background services were killed by OS power saving. Registered high-priority FCM data messages and dynamic broadcast receivers to bypass Doze mode.
+
+[215] •  Dual-SIM Telephony Discrepancies: Different carriers handled SMS subscription IDs unpredictably. Implemented fallback to SmsManager.getDefault() when subscription IDs were unavailable.
+
+[216] 4.5  DOCUMENTATION AND DEVELOPMENT ACTIVITIES
+
+[217] Thorough documentation and reproducible build engineering ensured that SafeCall AI remains transparent, auditable, and easily maintainable.
+
+[218] 4.5.1  Tasks Performed
+
+[219] •  Gradle & Node.js Configuration: Configured root build.gradle scripts for Android and package.json scripts for the caregiver dashboard and cloud backend.
+
+[220] •  Comprehensive Architecture Documentation: Authored extensive README.md files detailing mathematical scoring formulas, FSM diagrams, and privacy compliance proofs.
+
+[221] •  Standalone CLI Build & Test Automation: Created automated compilation scripts enabling full unit test execution via standard javac without IDE dependencies.
+
+[222] •  Technical PDF Guide Generation: Developed generate_backend_guide_pdf.py using ReportLab to compile technical viva and architecture documentation.
+
+[223] 4.5.2  Tools and Technologies Used
+
+[224] Table: 4.5.2 Tools and technologies used
+
+=== CHAPTER 5 (226-261) ===
+[226] CHAPTER 5
+
+[227] RESULTS AND FINDINGS
+
+[228] 5.1  OVERVIEW
+
+[229] The SafeCall AI project successfully achieved all core objectives: developing a deterministic on-device telephony monitoring system that accurately calculates urgency scores, identifies critical non-response emergencies through a 3-gate pipeline, and dispatches fail-safe multi-channel alerts with zero privacy invasion. This chapter presents the functional validation results and major engineering insights.
+
+[230] 5.2  FUNCTIONAL RESULTS
+
+[231] 5.2.1  Telephony Interception & Call State FSM
+
+[232] The telephony Finite State Machine correctly classified call lifecycle transitions across dozens of physical and simulated calls:
+
+[233] •  IDLE to RINGING: Accurately recorded ringStartTime and incoming caller number within < 5 milliseconds of carrier broadcast arrival.
+
+[234] •  RINGING to IDLE (0s Duration): Correctly classified as MISSED outcome, triggering SequenceTracker accumulation and grace timer initiation.
+
+[235] •  RINGING to OFFHOOK: Correctly identified as ANSWERED call, recording talk duration and instantly cancelling any active grace timers.
+
+[236] •  IDLE to OFFHOOK: Identified as OUTGOING_CALLBACK, indicating that the senior is active and dialing out, resolving any pending emergency sequences.
+
+[237] 5.2.2  The 4-Factor Weighted Urgency Engine
+
+[238] The WeightedRuleEngine was validated against 11 rigorous edge-case unit test scenarios, passing 100% of assertions:
+
+[239] •  Normal Single Call: Score = 0 pts | Level: LOW (0/25 contact + 0/35 freq + 0/10 time + 0/30 history).
+
+[240] •  Trusted Contact Repeated (3 calls): Score = 37 pts | Level: MEDIUM (+15 contact + 22 freq + 0 time + 0 history).
+
+[241] •  Emergency Late-Night Repeated (4 calls): Score = 70 pts | Level: MEDIUM (+25 contact + 35 freq + 10 time + 0 history).
+
+[242] •  Historical Missed Call Anomaly: Score = +30 pts awarded when contact answer rate drops below 50% across ≥3 historical calls.
+
+[243] •  Score Clamping: Guaranteed mathematical bounds [0, 100] even under stacked maximum rule triggers.
+
+[244] 5.2.3  The 5-Component Non-Response Policy Engine & 3-Gate Pipeline
+
+[245] The NonResponsePolicyEngine and 3-Gate Pipeline eliminated false alarms with complete accuracy:
+
+[246] •  Gate 1 (Frequency Filter): Calls with <4 missed events remained in ACCUMULATING status, preventing premature caregiver alerts.
+
+[247] •  Gate 2 (60-Second Grace Timer): Upon reaching 4 missed calls, a 60s countdown was triggered. When the senior touched the app or picked up a callback, the timer aborted immediately with status RESOLVED.
+
+[248] •  Gate 3 (Threshold & Schedule Check): If zero senior activity occurred during the 60s window and the score exceeded the threshold, DISPATCHED status was engaged.
+
+[249] 5.2.4  Embedded SQLite Storage & Offline Resilient Queue
+
+[250] Under simulated network dead zones (airplane mode), emergency alerts were safely serialized to the offline_alerts table. Upon network restoration, CallEventProcessor.drainOfflineAlerts() flushed all queued payloads to the cloud endpoint with zero data loss, while direct carrier SMS was dispatched immediately via cellular infrastructure.
+
+[251] 5.2.5  Companion React 18 Caregiver Dashboard & Live Visualizer
+
+[252] The standalone React 18 Caregiver Web Dashboard (safecall-dashboard) successfully visualized all scoring dimensions across 10 clinical benchmark scenarios. Evaluators verified instantaneous score transitions on the graphical urgency gauge, verified live factor breakdown cards (identity, frequency, timing, history), audited emergency audio siren playback, and inspected real-time alert logs under simulated senior emergency events.
+
+[253] 5.3  MAJOR FINDINGS AND INSIGHTS
+
+[254] 1. High Determinism & Zero ML Hallucination: Deterministic mathematical rule engines (0–100 pts) provide 100% auditable justifications for emergency dispatches, entirely eliminating dangerous black-box hallucinations.
+
+[255] 2. Zero-Eavesdropping Privacy Preservation: Operating strictly on metadata (timestamps, outcomes, caller hash) ensures total compliance with HIPAA and GDPR regulations with zero audio recording.
+
+[256] 3. Elimination of Alert Fatigue via 3-Gate Pipeline: The combination of frequency accumulation (≥4 calls), 60-second grace cancellation, and severity thresholding completely eliminated false emergency alerts.
+
+[257] 4. Dual-Tier Dispatch Resilience: Pairing carrier cellular SMS with cloud FCM push ensures reliable alert delivery even during home broadband outages or rural cellular data dead zones.
+
+[258] 5. Object-Oriented Modularity & Decoupling: Isolating pure-Java evaluation engines from the Android SDK enabled instant CLI test execution and clean data sharing with the React 18 presentation layers.
+
+[259] 6. Low Latency & Zero ANR Impact: Delegating telephony inspection to background ExecutorService pools allowed call interception to complete in < 5 ms, eliminating Android ANR risks.
+
+=== CHAPTER 6 & 7 & REF (261-297) ===
+[261] CHAPTER 6
+
+[262] CONCLUSION
+
+[263] SafeCall AI proposes a context-aware approach for estimating the urgency of incoming communication. The system successfully combines caller identity, call frequency, timing, and historical behaviour through a weighted rule-based engine that produces an urgency score bounded between 0–100. The approach is simple, explainable, and ideally suitable for production implementation using Java and Android technologies. Ultimately, the proposed system helps relatives and caregivers respond appropriately to unusual communication patterns, providing reliable protection for elderly individuals living independently.
+
+[264] By systematically employing OOP fundamentals—encapsulating call metadata, abstracting evaluation engines, leveraging inheritance in Android framework receivers, and demonstrating polymorphism in multi-channel dispatch—the architecture achieves outstanding modularity, testability, and runtime stability. The integration of the 4-Factor Weighted Rule Engine, 5-Component Non-Response Policy Engine, modern React 18 user interfaces, and Node.js cloud services eliminates the unpredictability of black-box AI while ensuring that genuine emergencies trigger immediate multi-channel escalation.
+
+[265] From a systems engineering perspective, the project fulfilled all defined technical milestones:
+
+[266] •  Developed and deployed the native Android mobile application with embedded React 18 UI.
+
+[267] •  Implemented the deterministic 4-factor and 5-component Java urgency evaluation engines.
+
+[268] •  Constructed the 3-gate false-alarm reduction pipeline with 60-second grace cancellation.
+
+[269] •  Implemented dual-tier alert dispatching via Node.js FCM cloud push and direct carrier cellular SMS.
+
+[270] •  Engineered offline resilience through embedded SQLite transactional queues with automatic synchronization.
+
+[271] •  Delivered the companion React 18 Caregiver Web Dashboard for live parameter exploration across 10 benchmark scenarios.
+
+[272] •  Achieved 100% success rate across pure-Java CLI regression test suites.
+
+[273] Beyond technical success, SafeCall AI reinforced essential software engineering competencies—system modeling, asynchronous concurrency, privacy-first architecture, component-based UI design, and cloud push synchronization—demonstrating how disciplined engineering can create life-saving real-world impact.
+
+[274] Future Enhancements
+
+[275] While the current platform satisfies all clinical and engineering objectives, several future enhancements can further expand its capabilities:
+
+[276] 1. Wearable Fall Detection & Bio-Telemetry Integration: Pairing the senior handset with low-power Bluetooth LE smartbands or smartwatches to incorporate real-time heart rate spikes and accelerometer fall telemetry into the urgency scoring matrix.
+
+[277] 2. P2P Mesh Emergency Relay in Total Dead Zones: Leveraging Wi-Fi Aware and Bluetooth mesh networking to relay emergency distress beacons across neighboring mobile devices when cellular towers and broadband connections are completely unreachable.
+
+[278] 3. Caregiver Multi-Language Interactive Voice Response (IVR): Introducing an automated telephone voice relay that dials primary caregivers directly and recites the emergency explanation in their preferred regional language if push and SMS notifications remain unacknowledged.
+
+[280] CHAPTER 7
+
+[281] Appendix
+
+[282] Mobile Handset & Embedded UI Architecture
+
+[284] Caregiver Web Dashboard & Cloud Backend Architecture
+
+[286] REFERENCE
+
+[287] [1]  Sebastian Wilhelm and Florian Wahl. “Emergency detection in smart homes using inactivity score for handling uncertain sensor data.” Sensors, 24(20):6583, 2024.
+      → Role in Project: Primary Literature Survey Reference — Evaluates weighted historical inactivity modeling and sensor reliability weighting in smart-home elderly monitoring.
+
+[288] [2]  Abdussalam Salama, Reza Saatchi, Maryam Bagheri, Karim Shebani, Yasir Javed, Raksha Balaraman, and Kavya Adhikari. “A fuzzy logic-based ehealth mobile app for activity detection and behavioral analysis in remote monitoring of elderly people: A pilot study.” Symmetry, 17(7):988, 2025.
+      → Role in Project: Primary Literature Survey Reference — Benchmarks on-device smartphone accelerometer telemetry and rule-based idle/fall detection for eldercare.
+
+[289] [3]  Ander Cejudo, Andoni Beristain, Aitor Almeida, Kristin Rebescher, Cristina Martín, and Iván Macía. “Smart home-assisted anomaly detection system for older adults: a deep learning approach with a comprehensive set of daily activities.” Medical & Biological Engineering & Computing, 63(6):1821–1835, 2025.
+      → Role in Project: Primary Literature Survey Reference — Reviews temporal routine modeling and recurrent neural network predictions for physical activity anomaly detection.
+
+[290] [4]  Wissam Benlala and Mohand Yazid. “Privacy-preserving smart home monitoring for alzheimer’s patients: A motion-based anomaly detection approach.” Smart Health, 41:100698, 2026.
+      → Role in Project: Primary Literature Survey Reference — Investigates non-intrusive motion sequence anomaly detection and machine learning baselines for seniors living alone.
+
+[291] [5]  Google Developers. “Android SDK API 34: TelephonyManager and BroadcastReceiver API Reference.” https://developer.android.com/reference/android/telephony/TelephonyManager
+      → Role in Project: Core Implementation Reference — Utilized for real-time telephony state interception (IDLE, RINGING, OFFHOOK), CallLog outcome inspection, and background thread execution.
+
+[292] [6]  React Development Team. “React 18: Component-Based User Interface Architecture and Hooks.” https://react.dev/
+      → Role in Project: Core Implementation Reference — Utilized for designing the standalone Caregiver Web Dashboard (app.jsx) and the embedded mobile healthcare single-page application.
+
+[293] [7]  Google Firebase. “Firebase Cloud Messaging (FCM HTTP v1) Architecture and Push Delivery Protocols.” https://firebase.google.com/docs/cloud-messaging
+      → Role in Project: Core Implementation Reference — Utilized by the Node.js backend (fcmDispatcher.js) to deliver high-priority push emergency alerts bypassing Android Doze mode.
+
+[294] [8]  SQLite Development Team. “SQLite Database Engine Architecture and SQL Syntax Reference (v3.42).” https://www.sqlite.org/docs.html
+      → Role in Project: Core Implementation Reference — Utilized for on-device persistence (safecall.db Schema v4) across contacts, call histories, sequences, and offline alert queues.
+
+[295] [9]  Oracle Corporation. “Java Platform, Standard Edition 17 (LTS) Specification.” https://docs.oracle.com/en/java/javase/17/
+      → Role in Project: Core Implementation Reference — Utilized for deterministic, decoupled core scoring algorithms (WeightedRuleEngine, NonResponsePolicyEngine) free of Android SDK dependencies.
+
+[296] [10]  U.S. Department of Health and Human Services. “Health Insurance Portability and Accountability Act (HIPAA) Privacy and Security Frameworks.” https://www.hhs.gov/hipaa/
+      → Role in Project: Regulatory Compliance Reference — Governs SafeCall AI’s zero-eavesdropping design, ensuring call audio is never accessed, recorded, or transmitted.

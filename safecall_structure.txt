@@ -1,0 +1,382 @@
+000 | size=22.0  | bold=True  | align=CENTER (1)   | SAFECALL AI
+001 | size=13.0  | bold=True  | align=CENTER (1)   | A PROJECT REPORT
+002 | size=11.0  | bold=None  | align=CENTER (1)   | submitted by
+003 | size=None  | bold=True  | align=CENTER (1)   | NIVEDITHA V S (SHR25CS197)
+004 | size=None  | bold=True  | align=CENTER (1)   | SHARON PAULET (SHR24CS191)
+005 | size=None  | bold=True  | align=CENTER (1)   | SHEFIN HASHIR (SHR24CS203)
+006 | size=None  | bold=True  | align=CENTER (1)   | VISMAYA E A (SHR24CS249)
+007 | size=11.0  | bold=None  | align=CENTER (1)   | to
+008 | size=None  | bold=True  | align=CENTER (1)   | the APJ Abdul Kalam Technological University
+009 | size=11.0  | bold=None  | align=CENTER (1)   | in partial fulfillment of the requirements for the award of the Degree of
+010 | size=11.0  | bold=None  | align=CENTER (1)   | of
+011 | size=None  | bold=True  | align=CENTER (1)   | Bachelor of Technology
+012 | size=11.0  | bold=None  | align=CENTER (1)   | in
+013 | size=None  | bold=True  | align=CENTER (1)   | Computer science Engineering
+015 | size=None  | bold=True  | align=CENTER (1)   | Department of Computer Science Engineering
+016 | size=None  | bold=True  | align=CENTER (1)   | SAHRDAYA COLLEGE OF ENGINEERING AND TECHNOLOGY
+017 | size=11.0  | bold=True  | align=CENTER (1)   | KODAKARA, THRISSUR - 680684
+018 | size=None  | bold=True  | align=CENTER (1)   | November 2026
+019 | size=14.0  | bold=True  | align=CENTER (1)   | DECLARATION
+020 | size=None  | bold=None  | align=JUSTIFY (3)  | We undersigned, hereby declare that the project report “SafeCall AI”, submitted for partial fulfillment of the requireme
+022 | size=None  | bold=True  | align=CENTER (1)   | DEPARTMENT OF COMPUTER SCIENCE ENGINEERING
+023 | size=None  | bold=True  | align=CENTER (1)   | SAHRDAYA COLLEGE OF ENGINEERING AND TECHNOLOGY
+024 | size=11.0  | bold=True  | align=CENTER (1)   | KODAKARA , THRISSUR
+026 | size=13.0  | bold=True  | align=CENTER (1)   | CERTIFICATE
+027 | size=None  | bold=None  | align=JUSTIFY (3)  | This is to certify that the project report entitled SafeCall AI submitted by Mevin Benty (SHR24CS190) , Midhun P M (SHR2
+029 | size=14.0  | bold=True  | align=CENTER (1)   | ACKNOWLEDGEMENT
+030 | size=None  | bold=None  | align=JUSTIFY (3)  | We would like to express our immense gratitude and profound thanks to all those who helped us to make this project a gre
+032 | size=13.0  | bold=True  | align=CENTER (1)   | INSTITUTE VISION
+033 | size=None  | bold=None  | align=JUSTIFY (3)  | To be a leading global centre of engineering education and research that fosters innovation, ethical leadership, and tra
+034 | size=13.0  | bold=True  | align=CENTER (1)   | INSTITUTE MISSION
+035 | size=11.5  | bold=None  | align=JUSTIFY (3)  | •  Provide high-quality, outcome-based engineering education that prepares future-proof graduates with strong technical 
+036 | size=11.5  | bold=None  | align=JUSTIFY (3)  | •  Promote interdisciplinary research, innovation, and entrepreneurship through vibrant collaboration with industry, aca
+037 | size=11.5  | bold=None  | align=JUSTIFY (3)  | •  Nurture values of integrity, responsibility, sustainability, and social commitment in students and faculty, shaping e
+038 | size=11.5  | bold=None  | align=JUSTIFY (3)  | •  Strengthen institutional excellence through continuous improvement, robust quality assurance systems, and effective s
+039 | size=13.0  | bold=True  | align=CENTER (1)   | QUALITY POLICY
+040 | size=None  | bold=None  | align=JUSTIFY (3)  | We at Sahrdaya are committed to provide Quality Technical Education through continual improvement and by inculcating mor
+042 | size=13.0  | bold=True  | align=CENTER (1)   | DEPARTMENT VISION
+043 | size=13.0  | bold=True  | align=CENTER (1)   | DEPARTMENT MISSION
+045 | size=13.0  | bold=True  | align=CENTER (1)   | PROGRAMME EDUCATIONAL OBJECTIVES (PEOs)
+046 | size=13.0  | bold=True  | align=CENTER (1)   | PROGRAMME SPECIFIC OUTCOMES (PSOs)
+048 | size=13.0  | bold=True  | align=CENTER (1)   | PROGRAMME OUTCOMES (POs)
+051 | size=13.0  | bold=True  | align=CENTER (1)   | COURSE OUTCOMES
+053 | size=14.0  | bold=True  | align=CENTER (1)   | Abstract
+054 | size=None  | bold=None  | align=JUSTIFY (3)  | In today's connected digital era, elderly seniors living independently face heightened vulnerabilities from sudden medic
+055 | size=None  | bold=None  | align=JUSTIFY (3)  | To resolve this challenge, this project proposes SafeCall AI: Connected Elderly-Care Telephony & Urgency Platform, an in
+056 | size=None  | bold=None  | align=JUSTIFY (3)  | The system operates through an asynchronous telephony interception Finite State Machine (FSM) utilizing Android OS nativ
+057 | size=None  | bold=None  | align=JUSTIFY (3)  | SafeCall AI incorporates dual-tier emergency dispatch, combining real-time cloud push alerts via Firebase Cloud Messagin
+058 | size=None  | bold=None  | align=JUSTIFY (3)  | Overall, SafeCall AI serves as a transparent, auditable, and life-saving digital guardian, bridging mobile systems engin
+060 | size=14.0  | bold=True  | align=CENTER (1)   | TABLE OF CONTENTS
+062 | size=14.0  | bold=True  | align=CENTER (1)   | LIST OF TABLES
+064 | size=14.0  | bold=True  | align=CENTER (1)   | LIST OF ABBREVIATIONS
+065 | size=None  | bold=None  | align=None         | OOP  -  Object-Oriented Programming
+066 | size=None  | bold=None  | align=None         | API  -  Application Programming Interface
+067 | size=None  | bold=None  | align=None         | FSM  -  Finite State Machine
+068 | size=None  | bold=None  | align=None         | SMS  -  Short Message Service
+069 | size=None  | bold=None  | align=None         | FCM  -  Firebase Cloud Messaging
+070 | size=None  | bold=None  | align=None         | SQLite  -  Structured Query Language Lite
+071 | size=None  | bold=None  | align=None         | SPA  -  Single-Page Application
+072 | size=None  | bold=None  | align=None         | UI/UX  -  User Interface / User Experience
+073 | size=None  | bold=None  | align=None         | AAL  -  Ambient Assisted Living
+074 | size=None  | bold=None  | align=None         | ANR  -  Application Not Responding
+075 | size=None  | bold=None  | align=None         | DAO  -  Data Access Object
+076 | size=None  | bold=None  | align=None         | REST  -  Representational State Transfer
+077 | size=None  | bold=None  | align=None         | JWT  -  JSON Web Token
+078 | size=None  | bold=None  | align=None         | HIPAA  -  Health Insurance Portability and Accountability Act
+079 | size=None  | bold=None  | align=None         | GDPR  -  General Data Protection Regulation
+080 | size=None  | bold=None  | align=None         | TTL  -  Time-To-Live
+082 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 1
+083 | size=14.0  | bold=True  | align=CENTER (1)   | INTRODUCTION
+084 | size=13.0  | bold=True  | align=None         | 1.1  GENERAL
+085 | size=None  | bold=None  | align=JUSTIFY (3)  | In the modern era of rapid technological advancement and changing social demographics, the global population is experien
+086 | size=None  | bold=None  | align=JUSTIFY (3)  | When such traumatic events occur, concerned family members, caregivers, and medical practitioners invariably attempt rep
+087 | size=None  | bold=None  | align=JUSTIFY (3)  | While modern software solutions have attempted to apply Machine Learning (ML) and Large Language Models (LLMs) to call e
+088 | size=None  | bold=None  | align=JUSTIFY (3)  | To resolve this fundamental dilemma, the SafeCall AI project was conceived as an intelligent, dual-tier connected health
+089 | size=13.0  | bold=True  | align=None         | 1.2  OBJECT-ORIENTED PROGRAMMING (OOP)
+090 | size=None  | bold=None  | align=JUSTIFY (3)  | Object-Oriented Programming (OOP) is a foundational software engineering paradigm that structures complex software syste
+091 | size=None  | bold=None  | align=JUSTIFY (3)  | The four foundational pillars of OOP form the architectural backbone of SafeCall AI:
+092 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Encapsulation: Bundling of critical telemetry attributes (timestamps, contact priorities, historical answer rates) wi
+093 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Inheritance: Deriving specialized components from extensible framework abstractions, such as DatabaseHelper extending
+094 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Abstraction: Concealing internal algorithmic complexity behind clean, well-defined service interfaces (e.g., Weighted
+095 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Polymorphism: Enabling interchangeable treatment of polymorphic call outcomes (ANSWERED, MISSED, DECLINED, OUTGOING_C
+096 | size=None  | bold=None  | align=JUSTIFY (3)  | In SafeCall AI, these OOP principles are systematically enforced across both handset-side Android services and the compo
+097 | size=None  | bold=True  | align=None         | 1.2.1  Nomenclature
+098 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 1.2.1 Nomenclature
+099 | size=13.0  | bold=True  | align=None         | 1.3  PROJECT OVERVIEW
+100 | size=None  | bold=None  | align=JUSTIFY (3)  | SafeCall AI is an end-to-end, multi-tier software ecosystem that unites on-device native Android Java intelligence with 
+101 | size=None  | bold=None  | align=JUSTIFY (3)  | At the foundation of the handset tier is the SafeCallPhoneStateReceiver, which implements an explicit Finite State Machi
+102 | size=None  | bold=None  | align=JUSTIFY (3)  | The project incorporates two complementary mathematical evaluation engines:
+103 | size=None  | bold=True  | align=JUSTIFY (3)  | •  The 4-Factor Weighted Rule Engine (WeightedRuleEngine): Evaluates incoming calls instantaneously across four additive
+104 | size=None  | bold=True  | align=JUSTIFY (3)  | •  The 5-Component Non-Response Policy Engine (NonResponsePolicyEngine): Monitors multi-call unanswered sequences over r
+105 | size=None  | bold=None  | align=JUSTIFY (3)  | To prevent caregiver panic and alert fatigue, SafeCall AI routes all anomalous events through a rigorous 3-Gate Anomaly 
+106 | size=None  | bold=None  | align=JUSTIFY (3)  | For interactive presentation and caregiver supervision, SafeCall AI provides two complementary React 18 interfaces: an o
+107 | size=13.0  | bold=True  | align=None         | 1.4  LITERATURE SURVEY
+108 | size=None  | bold=None  | align=JUSTIFY (3)  | A comprehensive review of contemporary academic literature in Ambient Assisted Living (AAL), elderly emergency detection
+109 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 1.4 Literature survey summary
+110 | size=None  | bold=True  | align=None         | Critical Synthesis & The Research Gap
+111 | size=None  | bold=None  | align=JUSTIFY (3)  | A rigorous comparative analysis of the surveyed literature reveals a fundamental blind spot across modern elderly care r
+112 | size=None  | bold=None  | align=JUSTIFY (3)  | SafeCall AI directly addresses this critical research gap by proposing a context-aware approach for estimating the urgen
+114 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 2
+115 | size=14.0  | bold=True  | align=CENTER (1)   | SCOPE AND DELIVERABLES
+116 | size=13.0  | bold=True  | align=None         | 2.1  SCOPE OF THE PROJECT
+117 | size=None  | bold=None  | align=JUSTIFY (3)  | The SafeCall AI project was undertaken to design, develop, and validate an ambient assisted living telephony security pl
+118 | size=None  | bold=None  | align=JUSTIFY (3)  | The defined scope encompasses seven core architectural domains:
+119 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. Core Domain Engine Development (Java 17): Designing decoupled, pure-Java scoring algorithms (WeightedRuleEngine, NonR
+120 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. Android Handset Telephony Layer (API 34): Implementing asynchronous BroadcastReceivers and background thread pools to
+121 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. On-Device SQLite Persistence Layer: Developing DatabaseHelper (schema version 4) to manage relational tables for cont
+122 | size=None  | bold=True  | align=JUSTIFY (3)  | 4. Hybrid Mobile Presentation Layer: Embedding a responsive React 18 single-page application inside an Android WebView, 
+123 | size=None  | bold=True  | align=JUSTIFY (3)  | 5. Companion Caregiver Web Dashboard & Visualizer Tier (React 18 & Node.js): Developing a responsive web dashboard using
+124 | size=None  | bold=True  | align=JUSTIFY (3)  | 6. Multi-Channel Emergency Dispatch System: Creating FamilyAlertManager to coordinate dual-tier notifications via cloud 
+125 | size=None  | bold=True  | align=JUSTIFY (3)  | 7. Security, Privacy, and Pairing Protocols: Establishing an ephemeral 6-character cryptographic device pairing handshak
+126 | size=13.0  | bold=True  | align=None         | 2.2  PROJECT DELIVERABLES
+127 | size=None  | bold=None  | align=JUSTIFY (3)  | The project deliverables represent the tangible software products, source code modules, configuration assets, and techni
+128 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. Handset Android Application Package (APK): Production-ready Android application package (app-debug.apk) targeting And
+129 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. Pure-Java Urgency Evaluation Engines: Standalone, deterministic Java class modules (WeightedRuleEngine.java, NonRespo
+130 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. Embedded SQLite Schema & Persistence Layer: Comprehensive SQLiteOpenHelper database management layer managing four re
+131 | size=None  | bold=True  | align=JUSTIFY (3)  | 4. Companion Caregiver Web Dashboard & Visualizer (safecall-dashboard): A fully functional React 18 web application runn
+132 | size=None  | bold=True  | align=JUSTIFY (3)  | 5. Embedded React 18 Healthcare Mobile UI: Offline-capable React 18 single-page application bundled within assets/www, f
+133 | size=None  | bold=True  | align=JUSTIFY (3)  | 6. Multi-Channel Alert & Cloud Backend Engine: Node.js cloud server (safecall-backend) implementing Firebase Cloud Messa
+134 | size=None  | bold=True  | align=JUSTIFY (3)  | 7. Automated Test Suites & Validation Framework: Pure Java CLI unit test suite (WeightedRuleEngineTest.java) validating 
+135 | size=None  | bold=True  | align=JUSTIFY (3)  | 8. Comprehensive Technical Documentation: Extensive technical documentation including README.md architectural guides, da
+137 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 3
+138 | size=14.0  | bold=True  | align=CENTER (1)   | METHODOLOGY
+139 | size=13.0  | bold=True  | align=None         | 3.1  OVERVIEW
+140 | size=None  | bold=None  | align=JUSTIFY (3)  | The methodology adopted for SafeCall AI followed a structured, iterative software engineering framework emphasizing Obje
+141 | size=None  | bold=None  | align=JUSTIFY (3)  | The development lifecycle was structured into five interconnected stages:
+142 | size=None  | bold=True  | align=JUSTIFY (3)  | •  1. Requirement Analysis & Clinical Telemetry Modeling: Formulating non-response emergency criteria based on eldercare
+143 | size=None  | bold=True  | align=JUSTIFY (3)  | •  2. Core Domain Engine Architecture: Implementing pure-Java rule engines, stateful burst trackers, and personalized ba
+144 | size=None  | bold=True  | align=JUSTIFY (3)  | •  3. Handset Telephony Interception & Persistence: Developing Android BroadcastReceivers, SQLite relational schemas, ba
+145 | size=None  | bold=True  | align=JUSTIFY (3)  | •  4. Caregiver Web Dashboard & Cloud Integration: Constructing the React 18 caregiver visualizer dashboard and Node.js 
+146 | size=None  | bold=True  | align=JUSTIFY (3)  | •  5. Quality Assurance, Boundary Testing & Verification: Executing pure-Java CLI regression test suites across 11 edge 
+147 | size=13.0  | bold=True  | align=None         | 3.2  DEVELOPMENT APPROACH
+148 | size=None  | bold=None  | align=JUSTIFY (3)  | An Iterative Agile Development Model was employed throughout the project lifecycle. This paradigm enabled continuous fee
+149 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. Decoupled Core Logic Formulation: Authoring domain models (CallContext, CallerProfile) and scoring rules in standard 
+150 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. Architectural Layering & Data Access: Implementing the repository pattern (CallRepository, PendingAlertRepository) at
+151 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. Asynchronous Event Pipeline: Implementing goAsync() and Handler loops to synchronize with native Android dialer commi
+152 | size=None  | bold=True  | align=JUSTIFY (3)  | 4. React Visualizer Verification: Building the React 18 dashboard to simulate and test edge scenarios (e.g., late-night 
+153 | size=None  | bold=True  | align=JUSTIFY (3)  | 5. Multi-Device End-to-End Testing: Validating dual-tier alert dispatches under airplane mode, low battery, and network 
+154 | size=13.0  | bold=True  | align=None         | 3.3  TOOLS AND FRAMEWORKS USED
+155 | size=None  | bold=None  | align=JUSTIFY (3)  | The selection of development tools and frameworks was guided by the need for deterministic mathematical computation, low
+156 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 3.3 Tools and frameworks used
+157 | size=13.0  | bold=True  | align=None         | 3.4  SOFTWARE DEVELOPMENT PRINCIPLES APPLIED
+158 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. Encapsulation:
+State encapsulation is strictly enforced in models such as CallContext, CallerProfile, CallRecord, and
+159 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. Inheritance:
+Extensible base classes reduce redundancy across the system. DatabaseHelper inherits lifecycle managemen
+160 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. Abstraction:
+High-level abstractions decouple business rules from infrastructure. The WeightedRuleEngine exposes a si
+161 | size=None  | bold=True  | align=JUSTIFY (3)  | 4. Polymorphism:
+Polymorphism is demonstrated in the handling of call outcomes through the CallOutcome enumeration (ANSW
+162 | size=13.0  | bold=True  | align=None         | 3.5  QUALITY ASSURANCE AND VERSION CONTROL
+163 | size=None  | bold=None  | align=JUSTIFY (3)  | To ensure uncompromising reliability in an emergency-oriented healthcare platform, SafeCall AI implemented rigorous qual
+164 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Git Version Control & Branch Hygiene: Code was maintained in a structured repository with descriptive commits, featur
+165 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Pure-Java Unit Test Suite: An automated test suite (WeightedRuleEngineTest.java) executes 11 comprehensive unit scena
+166 | size=None  | bold=True  | align=JUSTIFY (3)  | •  ANR and Memory Leak Auditing: All telephony intercept handlers utilize goAsync() and thread-pool executors, ensuring 
+167 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Physical Device Telephony Validation: Real-world tests were conducted using physical dual-SIM Android devices, verify
+169 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 4
+170 | size=14.0  | bold=True  | align=CENTER (1)   | PROJECT ACTIVITIES
+171 | size=13.0  | bold=True  | align=None         | 4.1  OVERVIEW
+172 | size=None  | bold=None  | align=JUSTIFY (3)  | The SafeCall AI development roadmap was executed through structured, synchronized engineering tracks: domain algorithm f
+173 | size=13.0  | bold=True  | align=None         | 4.2  BACKEND DEVELOPMENT ACTIVITIES
+174 | size=None  | bold=None  | align=JUSTIFY (3)  | The backend domain layer encapsulates the core analytical intelligence of SafeCall AI. Developed in deterministic Java 1
+175 | size=None  | bold=True  | align=None         | 4.2.1  Tasks Performed
+176 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Multi-Layered Architecture: Designed a strict multi-layered pattern: Models (data containers), DAOs (data access obje
+177 | size=None  | bold=True  | align=JUSTIFY (3)  | •  WeightedRuleEngine Implementation: Implemented the 4-factor additive mathematical engine calculating urgency across C
+178 | size=None  | bold=True  | align=JUSTIFY (3)  | •  NonResponsePolicyEngine Implementation: Constructed the 5-component non-response anomaly scorer evaluating missed-cal
+179 | size=None  | bold=True  | align=JUSTIFY (3)  | •  RoutineAnalyzer Implementation: Built an adaptive learner bucketing calling history into 24 one-hour intervals, enfor
+180 | size=None  | bold=True  | align=JUSTIFY (3)  | •  SequenceTracker Implementation: Engineered stateful burst tracking across 15-minute rolling windows, initiating and m
+181 | size=None  | bold=True  | align=JUSTIFY (3)  | •  DatabaseHelper & Schema Definition: Created DatabaseHelper (schema version 4) managing SQLite tables for contacts, ca
+182 | size=None  | bold=True  | align=None         | 4.2.2  Tools and Technologies Used
+183 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 4.2.2 Tools and technologies used
+184 | size=None  | bold=True  | align=None         | 4.2.3  Challenges Faced
+185 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Eliminating ANR Risks Under Rapid Ringing: Android system BroadcastReceivers enforce a strict 10-second timeout. Inte
+186 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Dialer Commit Latency Race Condition: Android stock dialers write call records to CallLog.Calls asynchronously after 
+187 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Baseline Contamination by Caregiver Simulations: Caregiver testing with simulated calls artificially distorted the se
+188 | size=13.0  | bold=True  | align=None         | 4.3  FRONTEND DEVELOPMENT ACTIVITIES
+189 | size=None  | bold=None  | align=JUSTIFY (3)  | Frontend activities focused on delivering an accessible, senior-tailored user experience on the mobile handset, coupled 
+190 | size=None  | bold=True  | align=None         | 4.3.1  Tasks Performed
+191 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Native Android Host Activity: Developed MainActivity.java to host the Android WebView, initialize database repositori
+192 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Native Contact & History Views: Created ContactManagementActivity and CallHistoryActivity allowing native Android lis
+193 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Bidirectional JavaScript Bridge: Implemented SafeCallNativeBridge.java using @JavascriptInterface annotations, provid
+194 | size=None  | bold=True  | align=JUSTIFY (3)  | •  React 18 Healthcare Mobile UI: Bundled an offline React 18 single-page application into assets/www featuring real-tim
+195 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Caregiver Web Dashboard & Visualizer: Constructed safecall-dashboard using React 18 (app.jsx), implementing live math
+196 | size=None  | bold=True  | align=None         | 4.3.2  Tools and Technologies Used
+197 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 4.3.2 Tools and technologies used
+198 | size=None  | bold=True  | align=None         | 4.3.3  Challenges Faced
+199 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Elderly Accessibility Considerations: Standard mobile UIs feature tiny fonts and low contrast. Designed soft-teal hig
+200 | size=None  | bold=True  | align=JUSTIFY (3)  | •  WebView Thread-Safety Cross-Talk: Invoking JavaScript from native background threads caused UI exceptions. Enforced r
+201 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Multi-Device Screen Responsiveness: Ensured responsive Flexbox styling adaptable across compact senior smartphones, m
+202 | size=13.0  | bold=True  | align=None         | 4.4  SYSTEM INTEGRATION AND TESTING
+203 | size=None  | bold=None  | align=JUSTIFY (3)  | System integration unified telephony interception, domain urgency engines, SQLite persistence, and dual-channel alert di
+204 | size=None  | bold=True  | align=None         | 4.4.1  Tasks Performed
+205 | size=None  | bold=True  | align=JUSTIFY (3)  | •  3-Gate Anomaly Pipeline Verification: Integrated Gate 1 (frequency accumulation ≥4 calls), Gate 2 (60-second grace ti
+206 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Dual-Tier Alert Dispatching: Wired FamilyAlertManager to trigger cloud HTTP POST alerts (/api/alerts/trigger) on the 
+207 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Resilient Offline Queuing: Validated offline enqueuing in offline_alerts table during airplane mode, verifying automa
+208 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Duplicate Alert Suppression: Implemented a 30-second cooldown filter suppressing repetitive duplicate dispatches duri
+209 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Device Pairing Protocol: Validated the 6-character ephemeral pairing protocol with 300-second TTL linking seniors and
+210 | size=None  | bold=True  | align=None         | 4.4.2  Tools and Technologies Used
+211 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 4.4.2 Tools and technologies used
+212 | size=None  | bold=True  | align=None         | 4.4.3  Challenges Faced
+213 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Carrier Dead Zones and Data Outages: Elderly residences often experience poor data coverage. Solved by decoupling clo
+214 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Android Doze Mode Battery Optimizations: Background services were killed by OS power saving. Registered high-priority
+215 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Dual-SIM Telephony Discrepancies: Different carriers handled SMS subscription IDs unpredictably. Implemented fallback
+216 | size=13.0  | bold=True  | align=None         | 4.5  DOCUMENTATION AND DEVELOPMENT ACTIVITIES
+217 | size=None  | bold=None  | align=JUSTIFY (3)  | Thorough documentation and reproducible build engineering ensured that SafeCall AI remains transparent, auditable, and e
+218 | size=None  | bold=True  | align=None         | 4.5.1  Tasks Performed
+219 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Gradle & Node.js Configuration: Configured root build.gradle scripts for Android and package.json scripts for the car
+220 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Comprehensive Architecture Documentation: Authored extensive README.md files detailing mathematical scoring formulas,
+221 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Standalone CLI Build & Test Automation: Created automated compilation scripts enabling full unit test execution via s
+222 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Technical PDF Guide Generation: Developed generate_backend_guide_pdf.py using ReportLab to compile technical viva and
+223 | size=None  | bold=True  | align=None         | 4.5.2  Tools and Technologies Used
+224 | size=10.0  | bold=None  | align=CENTER (1)   | Table: 4.5.2 Tools and technologies used
+226 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 5
+227 | size=14.0  | bold=True  | align=CENTER (1)   | RESULTS AND FINDINGS
+228 | size=13.0  | bold=True  | align=None         | 5.1  OVERVIEW
+229 | size=None  | bold=None  | align=JUSTIFY (3)  | The SafeCall AI project successfully achieved all core objectives: developing a deterministic on-device telephony monito
+230 | size=13.0  | bold=True  | align=None         | 5.2  FUNCTIONAL RESULTS
+231 | size=None  | bold=True  | align=None         | 5.2.1  Telephony Interception & Call State FSM
+232 | size=None  | bold=None  | align=JUSTIFY (3)  | The telephony Finite State Machine correctly classified call lifecycle transitions across dozens of physical and simulat
+233 | size=None  | bold=True  | align=JUSTIFY (3)  | •  IDLE to RINGING: Accurately recorded ringStartTime and incoming caller number within < 5 milliseconds of carrier broa
+234 | size=None  | bold=True  | align=JUSTIFY (3)  | •  RINGING to IDLE (0s Duration): Correctly classified as MISSED outcome, triggering SequenceTracker accumulation and gr
+235 | size=None  | bold=True  | align=JUSTIFY (3)  | •  RINGING to OFFHOOK: Correctly identified as ANSWERED call, recording talk duration and instantly cancelling any activ
+236 | size=None  | bold=True  | align=JUSTIFY (3)  | •  IDLE to OFFHOOK: Identified as OUTGOING_CALLBACK, indicating that the senior is active and dialing out, resolving any
+237 | size=None  | bold=True  | align=None         | 5.2.2  The 4-Factor Weighted Urgency Engine
+238 | size=None  | bold=None  | align=JUSTIFY (3)  | The WeightedRuleEngine was validated against 11 rigorous edge-case unit test scenarios, passing 100% of assertions:
+239 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Normal Single Call: Score = 0 pts | Level: LOW (0/25 contact + 0/35 freq + 0/10 time + 0/30 history).
+240 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Trusted Contact Repeated (3 calls): Score = 37 pts | Level: MEDIUM (+15 contact + 22 freq + 0 time + 0 history).
+241 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Emergency Late-Night Repeated (4 calls): Score = 70 pts | Level: MEDIUM (+25 contact + 35 freq + 10 time + 0 history)
+242 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Historical Missed Call Anomaly: Score = +30 pts awarded when contact answer rate drops below 50% across ≥3 historical
+243 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Score Clamping: Guaranteed mathematical bounds [0, 100] even under stacked maximum rule triggers.
+244 | size=None  | bold=True  | align=None         | 5.2.3  The 5-Component Non-Response Policy Engine & 3-Gate Pipeline
+245 | size=None  | bold=None  | align=JUSTIFY (3)  | The NonResponsePolicyEngine and 3-Gate Pipeline eliminated false alarms with complete accuracy:
+246 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Gate 1 (Frequency Filter): Calls with <4 missed events remained in ACCUMULATING status, preventing premature caregive
+247 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Gate 2 (60-Second Grace Timer): Upon reaching 4 missed calls, a 60s countdown was triggered. When the senior touched 
+248 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Gate 3 (Threshold & Schedule Check): If zero senior activity occurred during the 60s window and the score exceeded th
+249 | size=None  | bold=True  | align=None         | 5.2.4  Embedded SQLite Storage & Offline Resilient Queue
+250 | size=None  | bold=None  | align=JUSTIFY (3)  | Under simulated network dead zones (airplane mode), emergency alerts were safely serialized to the offline_alerts table.
+251 | size=None  | bold=True  | align=None         | 5.2.5  Companion React 18 Caregiver Dashboard & Live Visualizer
+252 | size=None  | bold=None  | align=JUSTIFY (3)  | The standalone React 18 Caregiver Web Dashboard (safecall-dashboard) successfully visualized all scoring dimensions acro
+253 | size=13.0  | bold=True  | align=None         | 5.3  MAJOR FINDINGS AND INSIGHTS
+254 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. High Determinism & Zero ML Hallucination: Deterministic mathematical rule engines (0–100 pts) provide 100% auditable 
+255 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. Zero-Eavesdropping Privacy Preservation: Operating strictly on metadata (timestamps, outcomes, caller hash) ensures t
+256 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. Elimination of Alert Fatigue via 3-Gate Pipeline: The combination of frequency accumulation (≥4 calls), 60-second gra
+257 | size=None  | bold=True  | align=JUSTIFY (3)  | 4. Dual-Tier Dispatch Resilience: Pairing carrier cellular SMS with cloud FCM push ensures reliable alert delivery even 
+258 | size=None  | bold=True  | align=JUSTIFY (3)  | 5. Object-Oriented Modularity & Decoupling: Isolating pure-Java evaluation engines from the Android SDK enabled instant 
+259 | size=None  | bold=True  | align=JUSTIFY (3)  | 6. Low Latency & Zero ANR Impact: Delegating telephony inspection to background ExecutorService pools allowed call inter
+261 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 6
+262 | size=14.0  | bold=True  | align=CENTER (1)   | CONCLUSION
+263 | size=None  | bold=None  | align=JUSTIFY (3)  | SafeCall AI proposes a context-aware approach for estimating the urgency of incoming communication. The system successfu
+264 | size=None  | bold=None  | align=JUSTIFY (3)  | By systematically employing OOP fundamentals—encapsulating call metadata, abstracting evaluation engines, leveraging inh
+265 | size=None  | bold=None  | align=JUSTIFY (3)  | From a systems engineering perspective, the project fulfilled all defined technical milestones:
+266 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Developed and deployed the native Android mobile application with embedded React 18 UI.
+267 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Implemented the deterministic 4-factor and 5-component Java urgency evaluation engines.
+268 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Constructed the 3-gate false-alarm reduction pipeline with 60-second grace cancellation.
+269 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Implemented dual-tier alert dispatching via Node.js FCM cloud push and direct carrier cellular SMS.
+270 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Engineered offline resilience through embedded SQLite transactional queues with automatic synchronization.
+271 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Delivered the companion React 18 Caregiver Web Dashboard for live parameter exploration across 10 benchmark scenarios
+272 | size=None  | bold=True  | align=JUSTIFY (3)  | •  Achieved 100% success rate across pure-Java CLI regression test suites.
+273 | size=None  | bold=None  | align=JUSTIFY (3)  | Beyond technical success, SafeCall AI reinforced essential software engineering competencies—system modeling, asynchrono
+274 | size=13.0  | bold=True  | align=None         | Future Enhancements
+275 | size=None  | bold=None  | align=JUSTIFY (3)  | While the current platform satisfies all clinical and engineering objectives, several future enhancements can further ex
+276 | size=None  | bold=True  | align=JUSTIFY (3)  | 1. Wearable Fall Detection & Bio-Telemetry Integration: Pairing the senior handset with low-power Bluetooth LE smartband
+277 | size=None  | bold=True  | align=JUSTIFY (3)  | 2. P2P Mesh Emergency Relay in Total Dead Zones: Leveraging Wi-Fi Aware and Bluetooth mesh networking to relay emergency
+278 | size=None  | bold=True  | align=JUSTIFY (3)  | 3. Caregiver Multi-Language Interactive Voice Response (IVR): Introducing an automated telephone voice relay that dials 
+280 | size=14.0  | bold=True  | align=CENTER (1)   | CHAPTER 7
+281 | size=14.0  | bold=True  | align=CENTER (1)   | Appendix
+282 | size=13.0  | bold=True  | align=None         | Mobile Handset & Embedded UI Architecture
+284 | size=13.0  | bold=True  | align=None         | Caregiver Web Dashboard & Cloud Backend Architecture
+286 | size=14.0  | bold=True  | align=CENTER (1)   | REFERENCE
+287 | size=None  | bold=True  | align=JUSTIFY (3)  | [1]  Sebastian Wilhelm and Florian Wahl. “Emergency detection in smart homes using inactivity score for handling uncerta
+288 | size=None  | bold=True  | align=JUSTIFY (3)  | [2]  Abdussalam Salama, Reza Saatchi, Maryam Bagheri, Karim Shebani, Yasir Javed, Raksha Balaraman, and Kavya Adhikari. 
+289 | size=None  | bold=True  | align=JUSTIFY (3)  | [3]  Ander Cejudo, Andoni Beristain, Aitor Almeida, Kristin Rebescher, Cristina Martín, and Iván Macía. “Smart home-assi
+290 | size=None  | bold=True  | align=JUSTIFY (3)  | [4]  Wissam Benlala and Mohand Yazid. “Privacy-preserving smart home monitoring for alzheimer’s patients: A motion-based
+291 | size=None  | bold=True  | align=JUSTIFY (3)  | [5]  Google Developers. “Android SDK API 34: TelephonyManager and BroadcastReceiver API Reference.” https://developer.an
+292 | size=None  | bold=True  | align=JUSTIFY (3)  | [6]  React Development Team. “React 18: Component-Based User Interface Architecture and Hooks.” https://react.dev/
+     
+293 | size=None  | bold=True  | align=JUSTIFY (3)  | [7]  Google Firebase. “Firebase Cloud Messaging (FCM HTTP v1) Architecture and Push Delivery Protocols.” https://firebas
+294 | size=None  | bold=True  | align=JUSTIFY (3)  | [8]  SQLite Development Team. “SQLite Database Engine Architecture and SQL Syntax Reference (v3.42).” https://www.sqlite
+295 | size=None  | bold=True  | align=JUSTIFY (3)  | [9]  Oracle Corporation. “Java Platform, Standard Edition 17 (LTS) Specification.” https://docs.oracle.com/en/java/javas
+296 | size=None  | bold=True  | align=JUSTIFY (3)  | [10]  U.S. Department of Health and Human Services. “Health Insurance Portability and Accountability Act (HIPAA) Privacy
+
+
+=== TABLES ===
+
+Table 0: rows=1, cols=2
+  R0: ['Place: Kodakara   Date of Submission: 07-11-2025', 'Mevin Benty Midhun P M Noel Biju Vishnupriya.M.V']
+
+Table 1: rows=1, cols=2
+  R0: ['Place: Kodakara Date of Submission: 07-11-2025', 'PROJECT GUIDE Ms Minnuja Shelly Assistant Professor  COORDINATOR Ms Suvarna V M Assistant Professor  HEAD OF THE DEPARTMENT Dr. Sreeraj R Associate Professor']
+
+Table 2: rows=1, cols=1
+  R0: ['To emerge as a globally acclaimed Centre of Excellence in Computer Science and Engineering by transformative education and research in intelligent systems and digital technologies, while ensuring innovation, ethical leadership, and sustainable societal impact.']
+
+Table 3: rows=1, cols=1
+  R0: ['M1: To deliver high-quality, outcome-based education in core and emerging computer science fields to produce skilled, industry-ready graduates with strong problem-solving abilities.  M2: To promote interdisciplinary research and innovation in advanced computing, collaborating with industry and academia to create real-world solutions.  M3: To nurture responsible computing professionals through ethics, sustainability, and social responsibility to create inclusive, impactful digital solutions.  M4: To strengthen institutional excellence through continuous curriculum improvement, quality assurance, stakeholder engagement, and effective governance aligned with global standards.']
+
+Table 4: rows=3, cols=2
+  R0: ['PEO1', 'To establish successful careers in industry, academia, or entrepreneurship by applying core and emerging knowledge in computer science within global and multidisciplinary environments.']
+  R1: ['PEO2', 'To analyze complex real-world problems and develop innovative, research-oriented solutions using intelligent and data-driven computing technologies.']
+  R2: ['PEO3', 'To demonstrate ethical practices, leadership, and teamwork while developing sustainable technological solutions that contribute positively to society.']
+
+Table 5: rows=3, cols=2
+  R0: ['PSO1', 'To design and develop efficient computing solutions using core computer science principles along with emerging technologies such as artificial intelligence, machine learning, and data analytics.']
+  R1: ['PSO2', 'To build scalable, secure, and high-quality software systems using modern tools, programming paradigms, cloud platforms, and cybersecurity practices aligned with industry standards.']
+  R2: ['PSO3', 'To apply advanced computing concepts in interdisciplinary domains to create innovative solutions, pursue research, and develop entrepreneurial ventures with ethical and societal responsibility.']
+
+Table 6: rows=7, cols=2
+  R0: ['PO1', 'Engineering Knowledge: Apply knowledge of mathematics, natural science, computing, engineering fundamentals and an engineering specialization as specified in WK1 to WK4 respectively to develop to the solution of complex engineering problems.']
+  R1: ['PO2', 'Problem Analysis: Identify, formulate, review research literature and analyze complex engineering problems reaching substantiated conclusions with consideration for sustainable development. (WK1 to WK4)']
+  R2: ['PO3', 'Design/Development of Solutions: Design creative solutions for complex engineering problems and design/develop systems/components/processes to meet identified needs with consideration for the public health and safety, whole-life cost, net zero carbon, culture, society and environment as required. (WK5).']
+  R3: ['PO4', 'Conduct Investigations of Complex Problems: Conduct investigations of complex engineering problems using research-based knowledge including design of experiments, modelling, analysis & interpretation of data to provide valid conclusions. (WK8).']
+
+Table 7: rows=4, cols=2
+  R0: ['PO8', 'Individual and Collaborative Team work: Function effectively as an individual, and as a member or leader in diverse/multi-disciplinary teams.']
+  R1: ['PO9', 'Communication: Communicate effectively and inclusively within the engineering community and society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations considering cultural, language, and learning differences.']
+  R2: ['PO10', "Project Management and Finance: Apply knowledge and understanding of engineering management principles and economic decision-making and apply these to one's own work, as a member and leader in a team, and to manage projects and in multidisciplinary environments."]
+  R3: ['PO11', 'Life-Long Learning: Recognize the need for, and have the preparation and ability for i) independent and life-long learning ii) adaptability to new and emerging technologies and iii) critical thinking in the broadest context of technological change. (WK8)']
+
+Table 8: rows=4, cols=2
+  R0: ['CO1', 'Understand the Java environment, utilizing primitive data types, implementing control structures, and managing input/output operations. [Apply]']
+  R1: ['CO2', 'Apply OOP concepts to create reusable, maintainable, and well-structured Java programs. [Analyze]']
+  R2: ['CO3', 'Apply advanced Java features such as packages for modularization, interfaces for abstraction and flexibility, and multithreading for concurrent execution to build robust and maintainable applications. [Apply]']
+  R3: ['CO4', 'Design and develop interactive applications by implementing React 18 component-based Graphical User Interfaces (GUI), Android WebView native bridges, and integrating database connectivity using SQLite / embedded persistence for data-driven functionality. [Create]']
+
+Table 9: rows=54, cols=3
+  R0: ['Chapter', 'TITLE', 'Page No.']
+  R1: ['', 'Institute Vision, Mission and Quality Policy', 'i']
+  R2: ['', 'Department Vision, Mission, PEOs, POs And PSOs', 'ii']
+  R3: ['', 'Abstract', 'vii']
+
+Table 10: rows=8, cols=3
+  R0: ['Table No.', 'TITLE', 'Page No.']
+  R1: ['1.2.1', 'Nomenclature', '02']
+  R2: ['1.4', 'Literature survey summary', '05']
+  R3: ['3.3', 'Tools and frameworks used', '11']
+
+Table 11: rows=10, cols=2
+  R0: ['Term', 'Description']
+  R1: ['OOP', 'Object-Oriented Programming']
+  R2: ['API', 'Application Programming Interface']
+  R3: ['FSM', 'Finite State Machine']
+
+Table 12: rows=5, cols=4
+  R0: ['TITLE & CITATION', 'METHOD', 'PERFORMANCE MEASURES', 'LIMITATION']
+  R1: ['Emergency Detection in Smart Homes Using Inactivity Score for Handling Uncertain Sensor Data  Year: 2024 Authors: Sebastian Wilhelm and Florian Wahl Journal: Sensors [1]', 'Inactivity Score based emergency detection. Probabilistic weighting according to sensor reliability. Historical inactivity is used to detect abnormal situations.', 'Reduced false-positive emergency alarms. Effective with uncertain and noisy sensor information. Demonstrates the value of weighted historical behaviour.', 'Focuses strictly on smart-home inactivity and ambient sensor data. Does not analyse communication patterns such as caller identity, repeated calls or communication history.']
+  R2: ['A Fuzzy Logic-Based eHealth Mobile App for Activity Detection and Behavioral Analysis in Remote Monitoring of Elderly People: A Pilot Study  Year: 2025 Authors: Salama et al. Journal: Symmetry [2]', 'Smartphone accelerometer data. Fuzzy logic inference and rule-based activity classification. Abnormal inactivity detection and caregiver alerts.', '87.7% accuracy for fall detection. 91.3% accuracy for idle detection. Demonstrates local smartphone-based elderly monitoring.', 'Pilot study with a small participant group. Focuses primarily on movement and physical activity. Does not consider caller identity, repeated calls or communication history.']
+  R3: ['Smart home-assisted anomaly detection system for older adults: a deep learning approach with a comprehensive set of daily activities  Year: 2025 Authors: Cejudo et al. Journal: Medical & Biological Engineering & Computing [3]', 'Smart-home daily activity data. Recurrent Neural Networks (RNN) for behaviour modelling. Next-day prediction for temporal anomaly detection.', 'Detects significant deviations from normal routines. Considers temporal behaviour. Demonstrates potential for smart-home elderly monitoring.', 'Focuses on daily physical activities. Does not analyse communication behaviour as an indicator of urgency. Caller identity, call frequency and communication history are not considered.']
+
+Table 13: rows=9, cols=3
+  R0: ['Category', 'Tool / Framework', 'Purpose / Description']
+  R1: ['Programming Languages', 'Java 17, JavaScript (ES6+), SQL', 'Core Android application, pure-Java domain engines, React UI, Node.js backend, and SQLite persistence.']
+  R2: ['Mobile Handset Platform', 'Android SDK (API 34 / Java 17)', 'TelephonyManager, BroadcastReceiver, SmsManager, and background executor thread pools.']
+  R3: ['Caregiver Web Dashboard', 'React 18 & Vanilla CSS (safecall-dashboard)', 'Interactive web visualizer with live urgency gauges, 10 benchmark test cases, and audio siren simulator.']
+
+Table 14: rows=5, cols=2
+  R0: ['Tool / Framework', 'Purpose']
+  R1: ['Java 17 OpenJDK', 'Deterministic object-oriented engine implementation and multithreaded logic.']
+  R2: ['SQLite 3', 'Embedded relational database engine with zero server configuration.']
+  R3: ['JUnit 4 & Java CLI', 'Lightweight regression unit testing executing without Android runtime overhead.']
+
+Table 15: rows=5, cols=2
+  R0: ['Tool / Framework', 'Purpose']
+  R1: ['React 18 & Vanilla CSS', 'Component-based web dashboard (app.jsx) and mobile handset UI with accessible healthcare design tokens.']
+  R2: ['Android WebView', 'Sandboxed container rendering the local React application on the handset.']
+  R3: ['Node.js HTTP Server', 'Serving the caregiver dashboard web visualizer on port 3000 with multi-MIME resolution.']
+
+Table 16: rows=5, cols=2
+  R0: ['Tool / Framework', 'Purpose']
+  R1: ['Android Telephony & SMS API', 'SmsManager and subscription APIs managing dual-SIM carrier message dispatch.']
+  R2: ['Firebase Cloud Messaging (FCM)', 'High-priority push delivery (FCM v1) bypassing Android Doze mode on caregiver devices.']
+  R3: ['Node.js & Express API', 'Ingesting alert triggers, verifying pairing codes, and tracking caregiver relationships.']
+
+Table 17: rows=5, cols=2
+  R0: ['Tool / Framework', 'Purpose']
+  R1: ['Gradle 8.5 & npm', 'Android build automation, JavaScript package management, and script execution.']
+  R2: ['Markdown & Mermaid.js', 'Text-based architectural documentation and sequence state diagrams.']
+  R3: ['Python & ReportLab 5.0', 'Automated PDF guide and technical manual generation script.']
+
+Table 18: rows=1, cols=2
+  R0: ['', '']
+
+Table 19: rows=1, cols=2
+  R0: ['', '']

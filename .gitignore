@@ -1,0 +1,111 @@
+# ==============================================================================
+# PestRisk - Git Ignore Rules
+# Protects sensitive secrets, database files, dependencies, and build artifacts
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Environment Variables & Secret Credentials (CRITICAL: NEVER COMMIT)
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.local
+.env.local
+.env.*.local
+*.secret
+*.pem
+*.key
+*.cert
+*.p12
+
+# ------------------------------------------------------------------------------
+# 2. Local Database & SQLite Engine Files (Contains sensitive/dynamic state)
+# ------------------------------------------------------------------------------
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.db-journal
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# ------------------------------------------------------------------------------
+# 3. Node.js & Frontend Build Outputs
+# ------------------------------------------------------------------------------
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+**/dist-ssr/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------------------------------------------
+# 4. Java & Maven Build Outputs
+# ------------------------------------------------------------------------------
+target/
+**/target/
+*.class
+*.war
+*.ear
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# ------------------------------------------------------------------------------
+# 5. Python Cache & Virtual Environments
+# ------------------------------------------------------------------------------
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ------------------------------------------------------------------------------
+# 6. Microsoft Office Lock & Temporary Files
+# ------------------------------------------------------------------------------
+~$*.docx
+~$*.doc
+~$*.pptx
+~$*.xlsx
+test_footer.docx
+test_margins.docx
+
+# ------------------------------------------------------------------------------
+# 7. IDE & Editor Specific Files
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# 8. Operating System & Log Files
+# ------------------------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+*.log
+logs/
+*.tmp
+*.temp
