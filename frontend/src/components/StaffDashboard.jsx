@@ -18,6 +18,7 @@ export default function StaffDashboard() {
   const [loginPassword, setLoginPassword] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Active view in Staff dashboard: 'operations' | 'admin-users'
   const [activeSubTab, setActiveSubTab] = useState('operations');
@@ -333,15 +334,36 @@ export default function StaffDashboard() {
               <label htmlFor="login-password" className="form-label">
                 Password <span className="required-star">*</span>
               </label>
-              <input
-                id="login-password"
-                type="password"
-                className="form-input"
-                placeholder="Enter password"
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
-                required
-              />
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                <input
+                  id="login-password"
+                  type={showPassword ? 'text' : 'password'}
+                  className="form-input"
+                  placeholder="Enter password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  required
+                  style={{ paddingRight: '2.5rem' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '0.75rem',
+                    background: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '1.1rem',
+                    padding: 0,
+                    lineHeight: 1,
+                  }}
+                  title={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </div>
 
             <button
@@ -354,7 +376,12 @@ export default function StaffDashboard() {
             </button>
 
             <div className="login-credential-hint">
-              <strong>Demo Credentials:</strong> Staff ID: <code>STAFF-101</code> / <code>StaffPassword123</code> &bull; Admin ID: <code>ADMIN-01</code> / <code>AdminPassword123</code>
+              <strong>Demo Credentials:</strong><br />
+              &bull; Staff: ID <code>STAFF-101</code> &bull; Password: <code>StaffPassword123</code><br />
+              &bull; Admin: ID <code>ADMIN-01</code> &bull; Password: <code>AdminPassword123</code><br />
+              <span style={{ fontSize: '0.72rem', color: '#a78bfa', display: 'inline-block', marginTop: '0.25rem' }}>
+                💡 Tip: Click the 1-Click Fast Demo Login buttons above to sign in immediately without typing!
+              </span>
             </div>
           </form>
         </div>
