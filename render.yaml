@@ -13,8 +13,19 @@ services:
       - key: PESTRISK_ADMIN_USERNAME
         value: ADMIN-01
       - key: PESTRISK_ADMIN_PASSWORD
-        generateValue: true
+        value: AdminPassword123
       - key: PESTRISK_JWT_SECRET
-        generateValue: true
+        value: 7f8a9b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a
       - key: CORS_ALLOWED_ORIGINS
         value: "*"
+      - key: DB_URL
+        value: jdbc:postgresql://ep-withered-block-b8h3l8sb-pooler.c-14.us-east-1.aws.neon.tech:5432/neondb?sslmode=require
+      - key: DB_USERNAME
+        value: neondb_owner
+      - key: DB_PASSWORD
+        value: npg_MV3ZKkUXqou7
+      - key: DB_DRIVER
+        value: org.postgresql.Driver
+      - key: JPA_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+

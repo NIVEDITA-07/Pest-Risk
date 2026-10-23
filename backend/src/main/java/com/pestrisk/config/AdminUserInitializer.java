@@ -33,25 +33,33 @@ public class AdminUserInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Guard: Prevent overwriting any existing administrator account or credentials
-        if (userAccountRepository.existsByUsername(adminUsername) || userAccountRepository.existsByRole(UserRole.ADMIN)) {
+        String effectiveAdminPass = (adminPassword != null && !adminPassword.isBlank()) 
+                ? adminPassword 
+                : "AdminPassword123";
+
+        // Provision Administrator account if not already configured
+        if (!userAccountRepository.existsByUsername(adminUsername) && !userAccountRepository.existsByRole(UserRole.ADMIN)) {
+            UserAccount admin = new UserAccount(
+                    adminUsername,
+                    passwordEncoder.encode(effectiveAdminPass),
+                    UserRole.ADMIN
+            );
+            userAccountRepository.save(admin);
+            log.info("Successfully initialized administrator account '{}' with role ADMIN.", adminUsername);
+        } else {
             log.info("Administrator account is already configured in database. Preserving existing credentials.");
-            return;
         }
 
-        // Require PESTRISK_ADMIN_PASSWORD to be explicitly configured outside tests
-        if (adminPassword == null || adminPassword.isBlank()) {
-            log.warn("No administrator account found in database. PESTRISK_ADMIN_PASSWORD is not configured. " +
-                     "Skipping automatic provisioning. Configure PESTRISK_ADMIN_PASSWORD to initialize administrator credentials.");
-            return;
+        // Provision default demonstration staff user STAFF-101 if not present
+        String defaultStaffUsername = "STAFF-101";
+        if (!userAccountRepository.existsByUsername(defaultStaffUsername)) {
+            UserAccount staff = new UserAccount(
+                    defaultStaffUsername,
+                    passwordEncoder.encode("StaffPassword123"),
+                    UserRole.STAFF
+            );
+            userAccountRepository.save(staff);
+            log.info("Successfully initialized demonstration staff account '{}' with role STAFF.", defaultStaffUsername);
         }
-
-        UserAccount admin = new UserAccount(
-                adminUsername,
-                passwordEncoder.encode(adminPassword),
-                UserRole.ADMIN
-        );
-        userAccountRepository.save(admin);
-        log.info("Successfully initialized administrator account '{}' with role ADMIN.", adminUsername);
     }
 }
